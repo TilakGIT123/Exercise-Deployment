@@ -1,0 +1,30 @@
+pipeline {
+  agent any
+  tools { 
+        maven 'MAVEN_NEW'
+        jdk 'JDK8'
+  }
+  environment {
+        MYJOB = 'Pipeline_Exercise'
+        BUILD = 'PIPELINE'
+    }
+  stages {
+    stage('Clone repository') {
+	  environment {
+        MYJOB = 'DevOps1'
+        BUILD = 'PIPELINE1'
+    }
+      steps {
+        checkout scm
+        sh 'echo $MYJOB'
+      }
+    }
+      stage('Build') {
+        steps {
+        sh 'mvn clean package'
+        sh 'echo $USER'
+        sh 'echo whoami'
+        sh 'echo $MYJOB'
+        } 
+      }
+      }
